@@ -1,0 +1,24 @@
+{
+  "name": "imgfilter",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "@baklavajs/core": "^1.10.2",
+    "@baklavajs/plugin-engine": "^1.10.2",
+    "@baklavajs/plugin-interface-types": "^1.10.2",
+    "@baklavajs/plugin-options-vue3": "^1.9.3",
+    "@baklavajs/plugin-renderer-vue3": "^1.9.3",
+    "image-js": "^0.35.3",
+    "lodash.uniqueid": "^4.0.1",
+    "vue": "^3.2.47"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^4.0.0",
+    "vite": "^4.1.4"
+  }
+}
