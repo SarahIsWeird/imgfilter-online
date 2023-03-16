@@ -2,8 +2,8 @@ import { Node } from "@baklavajs/core";
 import Image from "image-js";
 
 export default class ChannelMergeNode extends Node {
-    type = 'ChannelMerge';
-    name = 'Channel Merge';
+    type = 'Merge Channels';
+    name = 'Merge Color Channels';
 
     constructor() {
         super();

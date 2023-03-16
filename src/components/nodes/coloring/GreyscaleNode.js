@@ -1,6 +1,6 @@
 import { NodeBuilder } from "@baklavajs/core";
 
-export default new NodeBuilder('GreyscaleNode')
+export default new NodeBuilder('Greyscale')
     .setName('Greyscale')
     .addInputInterface('Input', null, null, { type: 'image' })
     .addOutputInterface('Output', { type: 'image' })

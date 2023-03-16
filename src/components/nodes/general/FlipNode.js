@@ -1,6 +1,6 @@
 import { NodeBuilder } from "@baklavajs/core";
 
-export default new NodeBuilder('FlipNode')
+export default new NodeBuilder('Flip')
     .setName('Flip')
     .addInputInterface('Input', null, null, { type: 'image'})
     .addOption('Flip Direction', 'SelectOption', 'X', null, { items: ['X', 'Y', 'Both']})

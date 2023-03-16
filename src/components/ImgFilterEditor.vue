@@ -10,17 +10,20 @@ import { Engine } from '@baklavajs/plugin-engine';
 import { InterfaceTypePlugin } from '@baklavajs/plugin-interface-types';
 
 import ImageOption from "@/components/options/ImageOption.vue";
-import ImageNode from "@/components/nodes/ImageNode";
-import RenderNode from "@/components/nodes/RenderNode";
+import ImageNode from "@/components/nodes/io/ImageNode";
+import RenderNode from "@/components/nodes/io/RenderNode";
 import PreviewOption from "@/components/options/PreviewOption.vue";
 import DownloadOption from "@/components/options/DownloadOption.vue";
-import GreyscaleNode from "@/components/nodes/GreyscaleNode";
-import ChannelSplitNode from "@/components/nodes/ChannelSplitNode";
-import ChannelMergeNode from "@/components/nodes/ChannelMergeNode";
-import BlurNode from "@/components/nodes/BlurNode";
-import FlipNode from "@/components/nodes/FlipNode";
-import SobelFilterNode from "@/components/nodes/SobelFilterNode";
-import AddNode from "@/components/nodes/AddNode";
+import GreyscaleNode from "@/components/nodes/coloring/GreyscaleNode";
+import ChannelSplitNode from "@/components/nodes/general/ChannelSplitNode";
+import ChannelMergeNode from "@/components/nodes/general/ChannelMergeNode";
+import BlurNode from "@/components/nodes/effects/BlurNode";
+import FlipNode from "@/components/nodes/general/FlipNode";
+import SobelFilterNode from "@/components/nodes/effects/SobelFilterNode";
+import AddNode from "@/components/nodes/general/AddNode";
+import ThresholdNode from "@/components/nodes/coloring/ThresholdNode";
+import ReduceNode from "@/components/nodes/coloring/ReduceNode";
+import ReduceBWNode from "@/components/nodes/coloring/ReduceBWNode";
 
 export default {
     name: "Editor",
@@ -46,15 +49,29 @@ export default {
         this.viewPlugin.registerOption('PreviewOption', PreviewOption);
         this.viewPlugin.registerOption('DownloadOption', DownloadOption);
 
-        this.editor.registerNodeType('ImageNode', ImageNode);
-        this.editor.registerNodeType('RenderNode', RenderNode);
-        this.editor.registerNodeType('GreyscaleNode', GreyscaleNode);
-        this.editor.registerNodeType('ChannelSplitNode', ChannelSplitNode);
-        this.editor.registerNodeType('ChannelMergeNode', ChannelMergeNode);
-        this.editor.registerNodeType('BlurNode', BlurNode);
-        this.editor.registerNodeType('FlipNode', FlipNode);
-        this.editor.registerNodeType('SobelFilterNode', SobelFilterNode);
-        this.editor.registerNodeType('AddNode', AddNode);
+        this.editor.registerNodeType('Input Image', ImageNode, 'IO');
+        this.editor.registerNodeType('Display Image', RenderNode, 'IO');
+
+        this.editor.registerNodeType('Split Channels', ChannelSplitNode, 'General');
+        this.editor.registerNodeType('Merge Channels', ChannelMergeNode, 'General');
+        this.editor.registerNodeType('Add Images', AddNode, 'General');
+        this.editor.registerNodeType('Flip', FlipNode, 'General');
+
+        this.editor.registerNodeType('Blur', BlurNode, 'Effects');
+        this.editor.registerNodeType('Sobel Filter', SobelFilterNode, 'Effects');
+
+        this.editor.registerNodeType('Greyscale', GreyscaleNode, 'Coloring');
+        this.editor.registerNodeType('Threshold', ThresholdNode, 'Coloring');
+        this.editor.registerNodeType('Reduce Colors', ReduceNode, 'Coloring');
+        this.editor.registerNodeType('Reduce (Greyscale)', ReduceBWNode, 'Coloring');
+
+        const inputNode = new ImageNode();
+        this.editor.addNode(inputNode);
+        inputNode.position = { x: 100, y: 200 };
+
+        const outputNode = new RenderNode();
+        this.editor.addNode(outputNode);
+        outputNode.position = { x: 1000, y: 200 };
     },
 }
 </script>

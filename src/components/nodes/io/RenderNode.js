@@ -1,7 +1,7 @@
 import { NodeBuilder } from "@baklavajs/core";
 
-export default new NodeBuilder('RenderNode')
-    .setName('Render')
+export default new NodeBuilder('Display Image')
+    .setName('Display')
     .addInputInterface('Image', null, null, { type: 'image' })
     .addOption('Preview', 'PreviewOption')
     .addOption('Download', 'DownloadOption')

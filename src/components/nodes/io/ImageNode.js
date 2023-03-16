@@ -1,7 +1,7 @@
 import { NodeBuilder } from "@baklavajs/core";
 
-export default new NodeBuilder('ImageNode')
-    .setName('Image')
+export default new NodeBuilder('Input Image')
+    .setName('Input')
     .addOption('Image', 'ImageOption')
     .addOutputInterface('Output', { type: 'image' })
     .onCalculate((n) => {

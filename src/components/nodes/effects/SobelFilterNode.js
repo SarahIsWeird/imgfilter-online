@@ -1,6 +1,6 @@
 import { NodeBuilder } from "@baklavajs/core";
 
-export default new NodeBuilder('SobelFilterNode')
+export default new NodeBuilder('Sobel Filter')
     .setName('Sobel Filter')
     .addInputInterface('Input', null, null, { type: 'image' })
     .addOption('Gradient Direction', 'SelectOption', 'X', null, { items: ['X', 'Y', 'XY'] })

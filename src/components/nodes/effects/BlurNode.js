@@ -1,6 +1,6 @@
 import { NodeBuilder } from "@baklavajs/core";
 
-export default new NodeBuilder('BlurNode')
+export default new NodeBuilder('Blur')
     .setName('Blur')
     .addInputInterface('Input', null, null, { type: 'image' })
     .addOption('Blur Radius', 'IntegerOption', 1, null, { min: 0 })
