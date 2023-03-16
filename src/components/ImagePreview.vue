@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import uniqueId from 'lodash.uniqueid';
+import { uniqueId } from 'lodash';
 import Image from "image-js";
 
 export default {

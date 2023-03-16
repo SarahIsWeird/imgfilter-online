@@ -8,7 +8,9 @@ export default new NodeBuilder('RenderNode')
     .onCalculate((n) => {
         const image = n.getInterface('Image').value;
 
-        n.setOptionValue('Preview', image);
-        n.setOptionValue('Download', image);
+        const newImage = image != null ? image.clone() : null;
+
+        n.setOptionValue('Preview', newImage);
+        n.setOptionValue('Download', newImage);
     })
     .build();

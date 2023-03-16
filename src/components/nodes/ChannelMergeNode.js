@@ -40,12 +40,17 @@ export default class ChannelMergeNode extends Node {
 
         let newImage;
 
+        const options = {
+            components: 4,
+            kind: 'RGB',
+        };
+
         if (red != null) {
-            newImage = Image.createFrom(red, { components: 3 });
+            newImage = Image.createFrom(red, options);
         } else if (green != null) {
-            newImage = Image.createFrom(green, { components: 3 });
+            newImage = Image.createFrom(green, options);
         } else {
-            newImage = Image.createFrom(blue, { components: 3 });
+            newImage = Image.createFrom(blue, options);
         }
 
         if (red != null) newImage.setChannel(0, red);

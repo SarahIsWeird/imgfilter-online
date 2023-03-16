@@ -1,5 +1,8 @@
 <template>
-    <button @click="onClick()" :disabled="value == null">Download image</button>
+    <div>
+        <button @click="onClick()" :disabled="value == null">Download image</button><br>
+        <button @click="onTabClick()" :disabled="value == null">Open in new tab</button>
+    </div>
 </template>
 
 <script>
@@ -11,9 +14,33 @@ export default {
         name: String,
         value: Image,
     },
+    data() {
+        return {
+            dataUrl: null,
+        };
+    },
+    watch: {
+        value(newValue) {
+            if (newValue == null) {
+                this.dataUrl = null;
+                return;
+            }
+
+            this.dataUrl = this.value.toDataURL('png');
+        }
+    },
     methods: {
         onClick() {
-            this.value.save('result.png').then(() => {}, (e) => console.error(e));
+            const a = document.createElement('a');
+            a.href = this.dataUrl;
+            a.download = 'result.png';
+            a.click();
+        },
+        onTabClick() {
+            const a = document.createElement('a');
+            a.href = this.dataUrl;
+            a.target = '_blank';
+            a.click();
         }
     }
 }

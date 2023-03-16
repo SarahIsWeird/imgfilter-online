@@ -12,7 +12,7 @@ export default {
     props: {
         name: String,
         value: Image,
-    }
+    },
 }
 </script>
 

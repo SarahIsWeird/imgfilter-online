@@ -17,6 +17,10 @@ import DownloadOption from "@/components/options/DownloadOption.vue";
 import GreyscaleNode from "@/components/nodes/GreyscaleNode";
 import ChannelSplitNode from "@/components/nodes/ChannelSplitNode";
 import ChannelMergeNode from "@/components/nodes/ChannelMergeNode";
+import BlurNode from "@/components/nodes/BlurNode";
+import FlipNode from "@/components/nodes/FlipNode";
+import SobelFilterNode from "@/components/nodes/SobelFilterNode";
+import AddNode from "@/components/nodes/AddNode";
 
 export default {
     name: "Editor",
@@ -47,7 +51,11 @@ export default {
         this.editor.registerNodeType('GreyscaleNode', GreyscaleNode);
         this.editor.registerNodeType('ChannelSplitNode', ChannelSplitNode);
         this.editor.registerNodeType('ChannelMergeNode', ChannelMergeNode);
-    }
+        this.editor.registerNodeType('BlurNode', BlurNode);
+        this.editor.registerNodeType('FlipNode', FlipNode);
+        this.editor.registerNodeType('SobelFilterNode', SobelFilterNode);
+        this.editor.registerNodeType('AddNode', AddNode);
+    },
 }
 </script>
 
