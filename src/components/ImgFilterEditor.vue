@@ -24,6 +24,7 @@ import AddNode from "@/components/nodes/general/AddNode";
 import ThresholdNode from "@/components/nodes/coloring/ThresholdNode";
 import ReduceNode from "@/components/nodes/coloring/ReduceNode";
 import ReduceBWNode from "@/components/nodes/coloring/ReduceBWNode";
+import InvertNode from "@/components/nodes/effects/InvertNode";
 
 export default {
     name: "Editor",
@@ -58,6 +59,7 @@ export default {
         this.editor.registerNodeType('Flip', FlipNode, 'General');
 
         this.editor.registerNodeType('Blur', BlurNode, 'Effects');
+        this.editor.registerNodeType('Invert Colors', InvertNode, 'Effects');
         this.editor.registerNodeType('Sobel Filter', SobelFilterNode, 'Effects');
 
         this.editor.registerNodeType('Greyscale', GreyscaleNode, 'Coloring');
