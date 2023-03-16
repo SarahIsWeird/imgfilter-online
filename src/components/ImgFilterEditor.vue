@@ -28,6 +28,8 @@ import InvertNode from "@/components/nodes/effects/InvertNode";
 import ScaleNode from "@/components/nodes/general/ScaleNode";
 import SizeOption from "@/components/options/SizeOption.vue";
 import ResizeNode from "@/components/nodes/general/ResizeNode";
+import RotateNode from "@/components/nodes/general/RotateNode";
+import CropNode from "@/components/nodes/general/CropNode";
 
 export default {
     name: "Editor",
@@ -46,8 +48,8 @@ export default {
         this.intfTypePlugin.addType('size', '#e3ba36');
 
         this.intfTypePlugin.addConversion('image', 'size', (image) => ({
-            width: image.width,
-            height: image.height,
+            width: image != null ? image.width : 0,
+            height: image != null ? image.height : 0,
         }));
 
         this.editor.use(this.optionPlugin);
@@ -69,6 +71,8 @@ export default {
         this.editor.registerNodeType('Flip', FlipNode, 'General');
         this.editor.registerNodeType('Scale', ScaleNode, 'General');
         this.editor.registerNodeType('Resize', ResizeNode, 'General');
+        this.editor.registerNodeType('Rotate', RotateNode, 'General');
+        this.editor.registerNodeType('Crop', CropNode, 'General');
 
         this.editor.registerNodeType('Blur', BlurNode, 'Effects');
         this.editor.registerNodeType('Invert Colors', InvertNode, 'Effects');
