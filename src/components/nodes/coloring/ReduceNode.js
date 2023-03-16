@@ -1,5 +1,5 @@
 import { NodeBuilder } from "@baklavajs/core";
-import {createColorSetFromCounts, reduceImage} from "@/components/nodes/util/reduce";
+import {createColorSetFromCounts, filterGreyColors, reduceImage} from "@/components/nodes/util/reduce";
 
 export default new NodeBuilder('Reduce Colors')
     .setName('Reduce')
@@ -7,6 +7,7 @@ export default new NodeBuilder('Reduce Colors')
     .addOption('Red colors', 'IntegerOption', 2, null, { min: 0 })
     .addOption('Green colors', 'IntegerOption', 2, null, { min: 0 })
     .addOption('Blue colors', 'IntegerOption', 2, null, { min: 0 })
+    .addOption('Filter grey colors', 'CheckboxOption', true)
     .addOutputInterface('Output', { type: 'image' })
     .onCalculate((node) => {
         const image = node.getInterface('Input').value;
@@ -20,7 +21,13 @@ export default new NodeBuilder('Reduce Colors')
         const greenColors = node.getOptionValue('Green colors');
         const blueColors = node.getOptionValue('Blue colors');
 
-        const colorSet = createColorSetFromCounts(image.maxValue, redColors, greenColors, blueColors);
+        let colorSet = createColorSetFromCounts(image.maxValue, redColors, greenColors, blueColors);
+
+        if (node.getOptionValue('Filter grey colors')) {
+            colorSet = filterGreyColors(image.maxValue, colorSet);
+        }
+
+        console.log(colorSet);
 
         node.getInterface('Output').value = reduceImage(image, colorSet);
     })

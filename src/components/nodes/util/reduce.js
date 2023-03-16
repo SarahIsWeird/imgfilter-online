@@ -53,10 +53,10 @@ export const getEqualDistancedValues = (max, count) => {
 export const createColorSet = (reds, greens, blues) => {
     const colorSet = [];
 
-    for (let i = 0; i < reds.length; i++) {
-        for (let j = 0; j < greens.length; j++) {
-            for (let k = 0; k < blues.length; k++) {
-                colorSet.push([reds[i], greens[j], blues[k]]);
+    for (const red of reds) {
+        for (const green of greens) {
+            for (const blue of blues) {
+                colorSet.push([red, green, blue]);
             }
         }
     }
@@ -74,4 +74,20 @@ export const createColorSetFromCounts = (maxValue, redCount, greenCount, blueCou
 
 export const createBWSet = (max, count) => {
     return getEqualDistancedValues(max, count).map(val => [val, val, val]);
+};
+
+const colorsEqual = (color1, color2) => {
+    return (color1[0] === color2[0]) && (color1[1] === color2[1]) && (color1[2] === color2[2]);
+};
+
+const isColorAShadeOfGrey = (max, color) => {
+    // Black and white don't count as "grey" for our purposes.
+    if (colorsEqual(color, [0, 0, 0]) || colorsEqual(color, [max, max, max])) return false;
+
+    // If R, G and B are equal, it's a shade of grey.
+    return (color[0] === color[1]) && (color[0] === color[2]);
+};
+
+export const filterGreyColors = (max, colorSet) => {
+    return colorSet.filter(color => !isColorAShadeOfGrey(max, color));
 };

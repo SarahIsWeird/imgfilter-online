@@ -2,7 +2,6 @@
 <div>
     <label class="fileLabel" :for="id">Upload image</label>
     <input :id="id" class="file" type="file" accept="image/png, image/jpeg" ref="file" @change="onFileUpload()">
-    <br><br>
     <span class="fileNameLabel">{{ file !== null ? file.name : 'No file selected' }}</span>
     <ImagePreview :image="image" />
 </div>
@@ -49,16 +48,27 @@ export default {
 
 <style scoped>
 .file {
-    opacity: 0;
     width: 1px;
     height: 1px;
+
+    margin: 0;
+    padding: 0;
+
+    opacity: 0;
+
+    font-size: 1px;
 }
 
 .fileLabel {
+    display: inline-block;
+    width: 100%;
+
     padding: 3px;
 
     border: 1px solid white;
     border-radius: 5px;
+
+    text-align: center;
 }
 
 .fileLabel:hover {
@@ -66,9 +76,10 @@ export default {
 }
 
 .fileNameLabel {
+    display: inline-block;
     width: 100%;
 
-    display: inline-block;
+    text-align: center;
 
     overflow: hidden;
     white-space: nowrap;

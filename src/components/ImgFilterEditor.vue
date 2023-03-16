@@ -25,6 +25,9 @@ import ThresholdNode from "@/components/nodes/coloring/ThresholdNode";
 import ReduceNode from "@/components/nodes/coloring/ReduceNode";
 import ReduceBWNode from "@/components/nodes/coloring/ReduceBWNode";
 import InvertNode from "@/components/nodes/effects/InvertNode";
+import ScaleNode from "@/components/nodes/general/ScaleNode";
+import SizeOption from "@/components/options/SizeOption.vue";
+import ResizeNode from "@/components/nodes/general/ResizeNode";
 
 export default {
     name: "Editor",
@@ -40,6 +43,12 @@ export default {
     created() {
         this.intfTypePlugin.addType('image', '#ef1e3c');
         this.intfTypePlugin.addType('channel', '#02f6a2');
+        this.intfTypePlugin.addType('size', '#e3ba36');
+
+        this.intfTypePlugin.addConversion('image', 'size', (image) => ({
+            width: image.width,
+            height: image.height,
+        }));
 
         this.editor.use(this.optionPlugin);
         this.editor.use(this.viewPlugin);
@@ -49,6 +58,7 @@ export default {
         this.viewPlugin.registerOption('ImageOption', ImageOption);
         this.viewPlugin.registerOption('PreviewOption', PreviewOption);
         this.viewPlugin.registerOption('DownloadOption', DownloadOption);
+        this.viewPlugin.registerOption('SizeOption', SizeOption);
 
         this.editor.registerNodeType('Input Image', ImageNode, 'IO');
         this.editor.registerNodeType('Display Image', RenderNode, 'IO');
@@ -57,6 +67,8 @@ export default {
         this.editor.registerNodeType('Merge Channels', ChannelMergeNode, 'General');
         this.editor.registerNodeType('Add Images', AddNode, 'General');
         this.editor.registerNodeType('Flip', FlipNode, 'General');
+        this.editor.registerNodeType('Scale', ScaleNode, 'General');
+        this.editor.registerNodeType('Resize', ResizeNode, 'General');
 
         this.editor.registerNodeType('Blur', BlurNode, 'Effects');
         this.editor.registerNodeType('Invert Colors', InvertNode, 'Effects');

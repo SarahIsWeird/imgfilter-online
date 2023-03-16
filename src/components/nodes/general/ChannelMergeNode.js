@@ -57,6 +57,11 @@ export default class ChannelMergeNode extends Node {
         if (green != null) newImage.setChannel(1, green);
         if (blue != null) newImage.setChannel(2, blue);
 
+        // Set alpha channel to completely opaque
+        for (let i = 3; i < newImage.data.length; i += newImage.channels) {
+            newImage.data[i] = newImage.maxValue;
+        }
+
         this.getInterface('Output').value = newImage;
     }
 }
