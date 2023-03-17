@@ -13,6 +13,7 @@
     "@baklavajs/plugin-interface-types": "^1.10.2",
     "@baklavajs/plugin-options-vue3": "^1.9.3",
     "@baklavajs/plugin-renderer-vue3": "^1.9.3",
+    "@vueuse/core": "^9.13.0",
     "image-js": "^0.35.3",
     "lodash": "^4.17.21",
     "lodash.uniqueid": "^4.0.1",

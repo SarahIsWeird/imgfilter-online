@@ -3,7 +3,7 @@ import { NodeBuilder } from "@baklavajs/core";
 export default new NodeBuilder('Rotate')
     .setName('Rotate')
     .addInputInterface('Input', null, null, { type: 'image' })
-    .addOption('Angle', 'NumberOption', 90, null)
+    .addInputInterface('Angle', 'NumberOption', 90, { type: 'number' })
     .addOption('Interpolation', 'SelectOption', 'nearestNeighbor', null, {
         items: [
             { text: 'Nearest Neighbor', value: 'nearestNeighbor' },
@@ -13,13 +13,13 @@ export default new NodeBuilder('Rotate')
     .addOutputInterface('Output', { type: 'image' })
     .onCalculate((node) => {
         const image = node.getInterface('Input').value;
+        const angle = node.getInterface('Angle').value;
 
-        if (image == null) {
+        if (image == null || angle == null) {
             node.getInterface('Output').value = null;
             return;
         }
 
-        const angle = node.getOptionValue('Angle');
         const interpolationAlgorithm = node.getOptionValue('Interpolation');
 
         node.getInterface('Output').value = image.rotate(angle, {
